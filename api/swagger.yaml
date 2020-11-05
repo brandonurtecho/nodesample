@@ -11,13 +11,13 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost:8080"
+host: "prsm-cfe.herokuapp.com"
 basePath: "/carpeta-fiscal-back/resources"
 tags:
 - name: "alias"
   description: ""
 schemes:
-- "http"
+- "https"
 produces: []
 paths:
   /alias:
