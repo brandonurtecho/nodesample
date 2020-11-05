@@ -1,0 +1,230 @@
+---
+swagger: "2.0"
+info:
+  description: "Este es el sistema de la Carpeta Fiscal desarrollada por el proyecto\
+    \ de Carpeta Fiscal Electrónica"
+  version: "1.0.0"
+  title: "carpeta-fiscal-muestra"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "presidencia_dflima@mpfn.gob.pe"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+basePath: "/demo"
+tags:
+- name: "alias"
+  description: ""
+schemes:
+- "http"
+produces: []
+paths:
+  /alias:
+    get:
+      tags:
+      - "alias"
+      summary: "Buscar los alias por ID de persona"
+      description: "Retorna todos los alias de una persona"
+      operationId: "getAliasByIdPersona"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "idPersona"
+        in: "query"
+        description: ""
+        required: true
+        type: "integer"
+      - name: "idCaso"
+        in: "query"
+        description: ""
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Operación exitosa"
+          examples:
+            application/json:
+            - idAliasElemento: 2
+              alias: "alias 1"
+              descripcion: "descripcion 1"
+              idCaso: 31
+            - idAliasElemento: 106
+              alias: "alias 2"
+              descripcion: "descripcion 1"
+              idCaso: 31
+            - idAliasElemento: 42
+              alias: "alias 3"
+              descripcion: "descripcion 1"
+              idCaso: 31
+            - idAliasElemento: 107
+              alias: "alias dadsaasd"
+              descripcion: "descripcion 1"
+              idCaso: 31
+            - idAliasElemento: 1
+              alias: "alias modificado"
+              idCaso: 31
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Alias"
+        "400":
+          description: "ID invalido"
+        "404":
+          description: "Alias no encontrados"
+        "500":
+          description: "Error del servidor"
+      x-swagger-router-controller: "Alias"
+    post:
+      tags:
+      - "alias"
+      summary: "Agregar un nuevo alias al sujeto procesal"
+      operationId: "addAlias"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Alias"
+      - name: "idPersona"
+        in: "query"
+        description: ""
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Operación exitosa"
+          examples:
+            application/json:
+              message: "El alias fue creado correctamente"
+              code: 200
+              id: 108
+        "500":
+          description: "Error del servidor"
+      x-swagger-router-controller: "Alias"
+  /alias/{idAlias}:
+    get:
+      tags:
+      - "alias"
+      summary: "Buscar alias por ID"
+      description: "Retorna el alias de un sujeto procesal"
+      operationId: "getAliasById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "idAlias"
+        in: "path"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Operación exitosa"
+          examples:
+            application/json:
+              idAliasElemento: 1
+              alias: "alias modificado"
+              idCaso: 31
+          schema:
+            $ref: "#/definitions/Alias"
+        "400":
+          description: "ID invalido"
+        "404":
+          description: "Alias no encontrado"
+        "500":
+          description: "Error del servidor"
+      x-swagger-router-controller: "Alias"
+    put:
+      tags:
+      - "alias"
+      summary: "Actualiza un alias existente"
+      operationId: "updateAlias"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Alias"
+      - name: "idAlias"
+        in: "path"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Operación exitosa"
+          examples:
+            application/json:
+              message: "El alias fue modificado correctamente"
+              code: 200
+              id: 1
+          schema: {}
+        "400":
+          description: "ID invalido"
+        "404":
+          description: "Alias no encontrado"
+        "500":
+          description: "Error del servidor"
+      x-swagger-router-controller: "Alias"
+    delete:
+      tags:
+      - "alias"
+      summary: "Elimina un alias"
+      operationId: "deleteAlias"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "idAlias"
+        in: "path"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Operación exitosa"
+          examples:
+            application/json:
+              message: "El alias fue eliminado correctamente"
+              code: 200
+              id: 3
+        "400":
+          description: "ID invalido"
+        "404":
+          description: "Alias no encontrado"
+        "500":
+          description: "Error del servidor"
+      x-swagger-router-controller: "Alias"
+definitions:
+  Alias:
+    type: "object"
+    required:
+    - "alias"
+    - "idAliasElemento"
+    properties:
+      idAliasElemento:
+        type: "integer"
+      alias:
+        type: "string"
+        description: ""
+      descripcion:
+        type: "string"
+        description: ""
+      idCaso:
+        type: "integer"
+        description: ""
+    xml:
+      name: "Alias"
+    example:
+      idAliasElemento: 1
+      alias: "aldsadsaias 2"
+      descripcion: "descripcion 1"
+      idCaso: 31
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
