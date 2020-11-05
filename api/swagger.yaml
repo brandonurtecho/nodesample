@@ -11,7 +11,8 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-basePath: "/demo"
+host: "prueba"
+basePath: "/carpeta-fiscal-back/resources"
 tags:
 - name: "alias"
   description: ""
@@ -69,6 +70,7 @@ paths:
               $ref: "#/definitions/Alias"
         "400":
           description: "ID invalido"
+          examples: {}
         "404":
           description: "Alias no encontrados"
         "500":
@@ -140,6 +142,7 @@ paths:
       tags:
       - "alias"
       summary: "Actualiza un alias existente"
+      description: ""
       operationId: "updateAlias"
       consumes:
       - "application/json"
@@ -209,6 +212,8 @@ definitions:
     properties:
       idAliasElemento:
         type: "integer"
+        example: 0
+        exclusiveMinimum: false
       alias:
         type: "string"
         description: ""
@@ -225,6 +230,12 @@ definitions:
       alias: "aldsadsaias 2"
       descripcion: "descripcion 1"
       idCaso: 31
+    x-examples:
+      example-1:
+        idAliasElemento: 1
+        alias: "aldsadsaias 2"
+        descripcion: "descripcion 1"
+        idCaso: 31
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"

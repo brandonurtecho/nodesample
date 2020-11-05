@@ -4,8 +4,8 @@
   "description": "Este es el sistema de la Carpeta Fiscal desarrollada por el proyecto de Carpeta Fiscal Electrónica",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
-    "start": "node index.js"
+	"prestart": "npm install",
+	"start": "node index.js"
   },
   "keywords": [
     "swagger"
